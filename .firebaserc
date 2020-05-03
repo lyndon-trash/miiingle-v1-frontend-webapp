@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "miiingle-net"
+  },
+  "targets": {
+    "miiingle-net": {
+      "hosting": {
+        "app": [
+          "app-miiingle-net"
+        ]
+      }
+    }
+  }
+}
