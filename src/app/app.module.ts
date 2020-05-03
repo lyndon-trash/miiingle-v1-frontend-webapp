@@ -9,6 +9,16 @@ import { MainNavigationComponent } from './main-navigation/main-navigation.compo
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
+
+export function socialAuthConfig() {
+  return new AuthServiceConfig([
+    {
+      id: FacebookLoginProvider.PROVIDER_ID,
+      provider: new FacebookLoginProvider(environment.fbAppId)
+    }
+  ]);
+}
 
 @NgModule({
   declarations: [
@@ -21,9 +31,15 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    SocialLoginModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: socialAuthConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
