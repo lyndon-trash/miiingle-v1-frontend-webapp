@@ -1,25 +1,23 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AuthenticationComponent} from './authentication.component';
-import {AuthService, SocialLoginModule} from 'angularx-social-login';
+import {AuthService} from 'angularx-social-login';
 import {Observable, of} from 'rxjs';
-import {SocialUser} from 'angularx-social-login/entities/user';
 
 describe('AuthenticationComponent', () => {
   let component: AuthenticationComponent;
   let fixture: ComponentFixture<AuthenticationComponent>;
 
   class MockAuthService {
-    get authState(): Observable<SocialUser> {
-      return of(new SocialUser());
+    get authState(): Observable<any> {
+      return of({});
     }
   }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SocialLoginModule],
       declarations: [AuthenticationComponent],
-      providers: [{provide: AuthService, useValue: MockAuthService}]
+      providers: [{provide: AuthService, useClass: MockAuthService}]
     })
       .compileComponents();
   }));
