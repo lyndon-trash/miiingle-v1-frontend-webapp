@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {AuthenticationComponent} from './authentication/authentication.component';
-import {MainNavigationComponent} from './main-navigation/main-navigation.component';
-
+import {ProfileComponent} from './main-nav/profile/profile.component';
+import {MapComponent} from './main-nav/map/map.component';
 
 const routes: Routes = [
-  {path: '', component: AuthenticationComponent},
-  {path: 'home', component: MainNavigationComponent}
+  {path: 'profile', component: ProfileComponent },
+  {path: 'map', component: MapComponent }
 ];
 
 @NgModule({
