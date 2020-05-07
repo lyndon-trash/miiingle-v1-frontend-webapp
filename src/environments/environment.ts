@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  fbAppId: '628721804375700'
+  fbAppId: '628721804375700',
+  mapApiKey: 'AIzaSyAOh36EhNzrMfT-czhSa14cPNBVMWH4vs0'
 };
 
 /*

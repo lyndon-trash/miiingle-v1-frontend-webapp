@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MapComponent } from './main-nav/map/map.component';
 import { ProfileComponent } from './main-nav/profile/profile.component';
+import {AgmCoreModule} from '@agm/core';
 
 export function socialAuthConfig() {
   return new AuthServiceConfig([
@@ -38,6 +39,7 @@ export function socialAuthConfig() {
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({apiKey: environment.mapApiKey}),
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
