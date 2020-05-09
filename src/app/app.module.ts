@@ -1,19 +1,19 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from './material/material.module';
-import {AuthenticationComponent} from './authentication/authentication.component';
-import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+
+import {AgmCoreModule} from '@agm/core';
+import {AppComponent} from './app.component';
+import {AuthenticationComponent} from './authentication/authentication.component';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
-import {MainNavComponent} from './main-nav/main-nav.component';
+import {AppRoutingModule} from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MapComponent} from './main-nav/map/map.component';
+import {MaterialModule} from './material/material.module';
+import {MainNavComponent} from './main-nav/main-nav.component';
 import {ProfileComponent} from './main-nav/profile/profile.component';
-import {AgmCoreModule} from '@agm/core';
+import {ServiceWorkerModule} from '@angular/service-worker';
 
 export function socialAuthConfig() {
   return new AuthServiceConfig([
@@ -33,11 +33,11 @@ export function socialAuthConfig() {
     ProfileComponent
   ],
   imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
     BrowserModule,
     LayoutModule,
-    BrowserAnimationsModule,
     MaterialModule,
-    AppRoutingModule,
     SocialLoginModule,
     AgmCoreModule.forRoot({apiKey: environment.mapApiKey}),
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
