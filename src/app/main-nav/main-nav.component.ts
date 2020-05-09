@@ -3,6 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {AuthService, SocialUser} from 'angularx-social-login';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-main-nav',
@@ -19,7 +21,9 @@ export class MainNavComponent implements OnInit {
 
   public user: SocialUser;
 
-  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+              private authService: AuthService,
+              private http: HttpClient) {}
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
@@ -31,4 +35,14 @@ export class MainNavComponent implements OnInit {
     this.authService.signOut().then(_ => this.user = null);
   }
 
+  register(): void {
+    console.log('Register');
+    this.http.post(`${environment.apiUrl}/registrations`, {
+      firstName: 'test',
+      lastName: 'test',
+      fullName: 'test'
+    }).subscribe((result) => {
+      console.log(result);
+    });
+  }
 }

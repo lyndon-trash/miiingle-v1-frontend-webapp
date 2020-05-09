@@ -14,6 +14,7 @@ import {MaterialModule} from './material/material.module';
 import {MainNavComponent} from './main-nav/main-nav.component';
 import {ProfileComponent} from './main-nav/profile/profile.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
+import {HttpClientModule} from '@angular/common/http';
 
 export function socialAuthConfig() {
   return new AuthServiceConfig([
@@ -36,6 +37,7 @@ export function socialAuthConfig() {
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule,
     LayoutModule,
     MaterialModule,
     SocialLoginModule,

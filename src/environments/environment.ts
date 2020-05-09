@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   fbAppId: '628721804375700',
-  mapApiKey: 'AIzaSyAOh36EhNzrMfT-czhSa14cPNBVMWH4vs0'
+  mapApiKey: 'AIzaSyAOh36EhNzrMfT-czhSa14cPNBVMWH4vs0',
+  apiUrl: 'http://localhost:8080'
 };
 
 /*
