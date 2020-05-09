@@ -11,11 +11,6 @@ import {environment} from '../environments/environment';
 import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {MainNavComponent} from './main-nav/main-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatIconModule} from '@angular/material/icon';
-import {MatListModule} from '@angular/material/list';
 import {MapComponent} from './main-nav/map/map.component';
 import {ProfileComponent} from './main-nav/profile/profile.component';
 import {AgmCoreModule} from '@agm/core';
@@ -39,18 +34,13 @@ export function socialAuthConfig() {
   ],
   imports: [
     BrowserModule,
-    AgmCoreModule.forRoot({apiKey: environment.mapApiKey}),
-    AppRoutingModule,
+    LayoutModule,
     BrowserAnimationsModule,
     MaterialModule,
+    AppRoutingModule,
     SocialLoginModule,
+    AgmCoreModule.forRoot({apiKey: environment.mapApiKey}),
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
   ],
   providers: [
     {
