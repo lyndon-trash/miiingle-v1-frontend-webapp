@@ -1,0 +1,4 @@
+{
+  "pageLoadTimeout": 60000,
+  "baseUrl": "https://localhost:4200"
+}
