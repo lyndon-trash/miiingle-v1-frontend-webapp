@@ -30,9 +30,13 @@ export class MainNavComponent implements OnInit {
     }
   }
 
-  register(): void {
+  async register() {
     console.log('Register');
-    API.get( 'Backend', '/registrations', {}).then((result) => {
+    await API.get( 'Backend', '/registrations', {
+      headers: {
+        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`,
+      }
+    }).then((result) => {
       console.log(result);
     });
   }
