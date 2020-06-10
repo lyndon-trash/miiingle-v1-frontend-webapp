@@ -3,8 +3,6 @@ import {environment} from '../environments/environment';
 
 import {AgmCoreModule} from '@agm/core';
 import {AppComponent} from './app.component';
-import {AuthenticationComponent} from './authentication/authentication.component';
-import {AuthServiceConfig, FacebookLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
@@ -16,40 +14,40 @@ import {ProfileComponent} from './main-nav/profile/profile.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {HttpClientModule} from '@angular/common/http';
 
-export function socialAuthConfig() {
-  return new AuthServiceConfig([
-    {
-      id: FacebookLoginProvider.PROVIDER_ID,
-      provider: new FacebookLoginProvider(environment.fbAppId)
-    }
-  ]);
-}
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import Amplify from 'aws-amplify';
+
+// TODO:
+// to improve/customize the login experience:
+// https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js#sign-up
+Amplify.configure({
+  aws_project_region: environment.aws.region,
+  aws_cognito_region: environment.aws.region,
+  aws_user_pools_id: environment.cognito.poolId,
+  aws_user_pools_web_client_id: environment.cognito.clientId,
+  oauth: {}
+});
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent,
     MainNavComponent,
     MapComponent,
     ProfileComponent
   ],
   imports: [
+    AmplifyUIAngularModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     LayoutModule,
     MaterialModule,
-    SocialLoginModule,
     AgmCoreModule.forRoot({apiKey: environment.mapApiKey}),
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],
-  providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: socialAuthConfig
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

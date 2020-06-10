@@ -1,5 +1,3 @@
-<app-main-nav *ngIf="user; else login"></app-main-nav>
-
-<ng-template #login>
-  <app-authentication></app-authentication>
-</ng-template>
+<amplify-authenticator>
+    <app-main-nav></app-main-nav>
+</amplify-authenticator>

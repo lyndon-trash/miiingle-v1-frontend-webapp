@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import {AuthService, SocialUser} from 'angularx-social-login';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-main-nav',
@@ -19,20 +19,16 @@ export class MainNavComponent implements OnInit {
       shareReplay()
     );
 
-  public user: SocialUser;
+  constructor(private breakpointObserver: BreakpointObserver, private http: HttpClient) {}
 
-  constructor(private breakpointObserver: BreakpointObserver,
-              private authService: AuthService,
-              private http: HttpClient) {}
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-    });
-  }
-
-  logout(): void {
-    this.authService.signOut().then(_ => this.user = null);
+  async logout() {
+    try {
+      await Auth.signOut({ global: true });
+    } catch (error) {
+      console.log('error signing out: ', error);
+    }
   }
 
   register(): void {
