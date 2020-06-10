@@ -10,5 +10,8 @@ export const environment = {
     region: 'us-east-1',
     poolId: 'us-east-1_5Pk5RO0Al',
     clientId: '58h0gvr70gb10uhd4stv7l9i32'
+  },
+  api: {
+    endpoint: 'https://ax7q8ga2nc.execute-api.us-east-1.amazonaws.com'
   }
 };

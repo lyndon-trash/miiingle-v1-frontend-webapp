@@ -3,8 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import { Auth } from 'aws-amplify';
+import { Auth, API } from 'aws-amplify';
 
 @Component({
   selector: 'app-main-nav',
@@ -33,11 +32,7 @@ export class MainNavComponent implements OnInit {
 
   register(): void {
     console.log('Register');
-    this.http.post(`${environment.apiUrl}/registrations`, {
-      firstName: 'test',
-      lastName: 'test',
-      fullName: 'test'
-    }).subscribe((result) => {
+    API.get( 'Backend', '/registrations', {}).then((result) => {
       console.log(result);
     });
   }

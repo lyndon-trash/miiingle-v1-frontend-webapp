@@ -6,7 +6,6 @@ export const environment = {
   production: false,
   fbAppId: '628721804375700',
   mapApiKey: 'AIzaSyAOh36EhNzrMfT-czhSa14cPNBVMWH4vs0',
-  apiUrl: 'http://localhost:8080',
   aws: {
     region: 'us-east-1'
   },
@@ -14,6 +13,9 @@ export const environment = {
     region: 'us-east-1',
     poolId: 'us-east-1_5Pk5RO0Al',
     clientId: '58h0gvr70gb10uhd4stv7l9i32'
+  },
+  api: {
+    endpoint: 'https://ax7q8ga2nc.execute-api.us-east-1.amazonaws.com'
   }
 };
 

@@ -21,11 +21,19 @@ import Amplify from 'aws-amplify';
 // to improve/customize the login experience:
 // https://docs.amplify.aws/lib/auth/emailpassword/q/platform/js#sign-up
 Amplify.configure({
-  aws_project_region: environment.aws.region,
-  aws_cognito_region: environment.aws.region,
-  aws_user_pools_id: environment.cognito.poolId,
-  aws_user_pools_web_client_id: environment.cognito.clientId,
-  oauth: {}
+  Auth: {
+    region: environment.aws.region,
+    userPoolId: environment.cognito.poolId,
+    userPoolWebClientId: environment.cognito.clientId ,
+  },
+  API: {
+    endpoints: [
+      {
+        name: 'Backend',
+        endpoint: environment.api.endpoint
+      }
+    ]
+  }
 });
 
 
