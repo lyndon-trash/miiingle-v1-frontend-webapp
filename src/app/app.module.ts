@@ -15,7 +15,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
-import Amplify from 'aws-amplify';
+import Amplify, {Auth} from 'aws-amplify';
 
 // TODO:
 // to improve/customize the login experience:
@@ -30,7 +30,12 @@ Amplify.configure({
     endpoints: [
       {
         name: 'Backend',
-        endpoint: environment.api.endpoint
+        endpoint: environment.api.endpoint,
+        custom_header: async () => {
+          return {
+            Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+          };
+        }
       }
     ]
   }
