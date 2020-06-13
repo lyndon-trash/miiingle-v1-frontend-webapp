@@ -11,11 +11,11 @@ export const environment = {
   },
   cognito: {
     region: 'us-east-1',
-    poolId: 'us-east-1_5Pk5RO0Al',
-    clientId: '58h0gvr70gb10uhd4stv7l9i32'
+    poolId: 'us-east-1_NfFWAEXNu',
+    clientId: 'psveckaf8nfvv4hnd31mr0fvl'
   },
   api: {
-    endpoint: 'https://ax7q8ga2nc.execute-api.us-east-1.amazonaws.com'
+    endpoint: 'https://api.miiingle.net'
   }
 };
 
