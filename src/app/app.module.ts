@@ -16,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify, {Auth} from 'aws-amplify';
+import { AuthRecieverComponent } from './auth-reciever/auth-reciever.component';
 
 // TODO:
 // to improve/customize the login experience:
@@ -24,7 +25,14 @@ Amplify.configure({
   Auth: {
     region: environment.aws.region,
     userPoolId: environment.cognito.poolId,
-    userPoolWebClientId: environment.cognito.clientId ,
+    userPoolWebClientId: environment.cognito.clientId,
+    oauth: {
+      domain: 'demo-headhuntr-io-1919.auth.us-east-1.amazoncognito.com',
+      scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin', 'https://api.miiingle.net/backend.read'],
+      redirectSignIn: 'https://localhost:4200/auth',
+      redirectSignOut: 'http://localhost:4200/logout',
+      responseType: 'code'
+    }
   },
   API: {
     endpoints: [
@@ -47,7 +55,8 @@ Amplify.configure({
     AppComponent,
     MainNavComponent,
     MapComponent,
-    ProfileComponent
+    ProfileComponent,
+    AuthRecieverComponent
   ],
   imports: [
     AmplifyUIAngularModule,

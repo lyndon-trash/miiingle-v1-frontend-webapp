@@ -31,11 +31,14 @@ export class MainNavComponent implements OnInit {
   }
 
   async register() {
-    console.log('Register');
-    await API
-      .get( 'Backend', '/registrations', {})
-      .then((result) => {
-        console.log(result);
-      });
+    // https://docs.amplify.aws/lib/auth/social/q/platform/js#setup-frontend
+
+    // console.log('Register');
+    // await API
+    //   .get( 'Backend', '/registrations', {})
+    //   .then((result) => {
+    //     console.log(result);
+    //   });
+    await Auth.federatedSignIn();
   }
 }
