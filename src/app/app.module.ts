@@ -24,7 +24,14 @@ Amplify.configure({
   Auth: {
     region: environment.aws.region,
     userPoolId: environment.cognito.poolId,
-    userPoolWebClientId: environment.cognito.clientId ,
+    userPoolWebClientId: environment.cognito.clientId,
+    oauth: {
+      domain: 'demo-headhuntr-io-1919.auth.us-east-1.amazoncognito.com',
+      scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin', 'https://api.miiingle.net/backend.read'],
+      redirectSignIn: 'https://localhost:4200/auth',
+      redirectSignOut: 'http://localhost:4200/logout',
+      responseType: 'code'
+    }
   },
   API: {
     endpoints: [

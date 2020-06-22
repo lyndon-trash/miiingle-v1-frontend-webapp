@@ -33,7 +33,7 @@ export class MainNavComponent implements OnInit {
   async register() {
     console.log('Register');
     await API
-      .get( 'Backend', '/registrations', {})
+      .get( 'Backend', '/me', {})
       .then((result) => {
         console.log(result);
       });
